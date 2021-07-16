@@ -1,5 +1,11 @@
+import JumbotronContainer from './containers/JumbotronContainer';
+
 function App() {
-  return <div></div>;
+  return (
+    <>
+      <JumbotronContainer />
+    </>
+  );
 }
 
 export default App;

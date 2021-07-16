@@ -1,6 +1,6 @@
 {
-  "short_name": "Package Tracker",
-  "name": "Package Tracker App",
+  "short_name": "Netflix",
+  "name": "Netflix clone project",
   "icons": [],
   "start_url": ".",
   "display": "standalone",
