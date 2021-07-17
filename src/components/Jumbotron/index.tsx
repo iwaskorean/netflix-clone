@@ -23,7 +23,7 @@ export default function Jumbotron({
   key: number;
 }) {
   return (
-    <Item>
+    <Item {...restProps}>
       <Inner direction={direction}>{children}</Inner>
     </Item>
   );
