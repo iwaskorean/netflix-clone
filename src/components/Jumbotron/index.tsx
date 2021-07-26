@@ -8,22 +8,15 @@ import {
   Image,
 } from './styles/jumbotron';
 
-interface Props {
-  children: any;
-}
-
 export default function Jumbotron({
   children,
   direction,
-  key,
-  ...restProps
 }: {
-  children: any;
+  children: JSX.Element[];
   direction: string;
-  key: number;
 }) {
   return (
-    <Item {...restProps}>
+    <Item>
       <Inner direction={direction}>{children}</Inner>
     </Item>
   );
@@ -31,26 +24,38 @@ export default function Jumbotron({
 
 Jumbotron.Container = function JumbotronContainer({
   children,
-  ...restProps
-}: Props) {
-  return <Container {...restProps}>{children}</Container>;
+}: {
+  children: JSX.Element[];
+}) {
+  return <Container>{children}</Container>;
 };
 
-Jumbotron.Pane = function JumbotronPane({ children, ...restProps }: Props) {
-  return <Pane {...restProps}>{children}</Pane>;
+Jumbotron.Pane = function JumbotronPane({
+  children,
+}: {
+  children: JSX.Element[] | JSX.Element;
+}) {
+  return <Pane>{children}</Pane>;
 };
 
-Jumbotron.Title = function JumbotronTitle({ children, ...restProps }: Props) {
-  return <Title {...restProps}>{children}</Title>;
+Jumbotron.Title = function JumbotronTitle({ children }: { children: string }) {
+  return <Title>{children}</Title>;
 };
 
 Jumbotron.SubTitle = function JumbotronSubTitle({
   children,
-  ...restProps
-}: Props) {
-  return <SubTitle {...restProps}>{children}</SubTitle>;
+}: {
+  children: string;
+}) {
+  return <SubTitle>{children}</SubTitle>;
 };
 
-Jumbotron.Image = function JumbotronImage({ ...restProps }) {
-  return <Image {...restProps} />;
+Jumbotron.Image = function JumbotronImage({
+  src,
+  alt,
+}: {
+  src: string;
+  alt: string;
+}) {
+  return <Image src={src} alt={alt} />;
 };

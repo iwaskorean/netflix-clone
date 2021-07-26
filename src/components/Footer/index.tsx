@@ -8,42 +8,38 @@ import {
   Break,
 } from './styles/Footer';
 
-// Have to update
-interface Props {
-  children: any;
+export default function Footer({ children }: { children: JSX.Element[] }) {
+  return <Container>{children}</Container>;
 }
 
-interface LinkProps {
-  children: any;
+Footer.Row = function FooterRow({ children }: { children: JSX.Element[] }) {
+  return <Row> {children} </Row>;
+};
+
+Footer.Column = function FooterColumn({
+  children,
+}: {
+  children: JSX.Element[];
+}) {
+  return <Column> {children} </Column>;
+};
+
+Footer.Title = function FooterTitle({ children }: { children: string }) {
+  return <Title> {children} </Title>;
+};
+
+Footer.Text = function FooterText({ children }: { children: string }) {
+  return <Text> {children} </Text>;
+};
+
+Footer.Link = function FooterLink({
+  children,
+  href,
+}: {
+  children: string;
   href: string;
-}
-
-export default function Footer({ children, ...restProps }: { children: any }) {
-  return <Container {...restProps}>{children}</Container>;
-}
-
-Footer.Row = function FooterRow({ children, ...restProps }: Props) {
-  return <Row {...restProps}> {children} </Row>;
-};
-
-Footer.Column = function FooterColumn({ children, ...restProps }: Props) {
-  return <Column {...restProps}> {children} </Column>;
-};
-
-Footer.Title = function FooterTitle({ children, ...restProps }: Props) {
-  return <Title {...restProps}> {children} </Title>;
-};
-
-Footer.Text = function FooterText({ children, ...restProps }: Props) {
-  return <Text {...restProps}> {children} </Text>;
-};
-
-Footer.Link = function FooterLink({ children, href, ...restProps }: LinkProps) {
-  return (
-    <Link href={href} {...restProps}>
-      {children}
-    </Link>
-  );
+}) {
+  return <Link href={href}>{children}</Link>;
 };
 
 Footer.Break = function FooterBreak() {

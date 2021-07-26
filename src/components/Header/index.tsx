@@ -6,38 +6,29 @@ export default function Header({
   src,
 }: {
   src: string;
-  children: any;
+  children: JSX.Element;
 }) {
   return <Background src={src}>{children}</Background>;
 }
 
-Header.Frame = function HeaderFrame({
-  children,
-  ...restProps
-}: {
-  children: any;
-}) {
-  return <Container {...restProps}>{children}</Container>;
+Header.Frame = function HeaderFrame({ children }: { children: JSX.Element[] }) {
+  return <Container>{children}</Container>;
 };
 
 Header.ButtonLink = function HeaderButtonLink({
   children,
   to,
-  ...restProps
 }: {
   to: string;
-  children: any;
+  children: string;
 }) {
-  return (
-    <ButtonLink to={to} {...restProps}>
-      {children}
-    </ButtonLink>
-  );
+  return <ButtonLink to={to}>{children}</ButtonLink>;
 };
 
 Header.Logo = function HeaderLogo({
   to,
-  ...restProps
+  alt,
+  src,
 }: {
   to: string;
   alt: string;
@@ -45,7 +36,7 @@ Header.Logo = function HeaderLogo({
 }) {
   return (
     <ReactRouterLink to={to}>
-      <Logo {...restProps} />
+      <Logo src={src} alt={alt} />
     </ReactRouterLink>
   );
 };

@@ -1,35 +1,30 @@
-import { Container, Input, Button, Text, Break } from './styles/OptForm';
+import { Container, Input, Button, Text } from './styles/OptForm';
 
-interface Props {
-  children: any;
-}
-
-export default function OptForm({ children, ...restProps }: Props) {
-  return <Container {...restProps}>{children}</Container>;
+export default function OptForm({ children }: { children: JSX.Element[] }) {
+  return <Container>{children}</Container>;
 }
 
 OptForm.Input = function OptFormInput({
   placeholder,
-  ...restProps
 }: {
   placeholder: string;
 }) {
-  return <Input {...restProps} />;
+  return <Input />;
 };
 
-OptForm.Button = function OptFormButton({ children, ...restProps }: Props) {
+OptForm.Button = function OptFormButton({ children }: { children: string }) {
   return (
-    <Button {...restProps}>
+    <Button>
       {children}
       <img src="/images/icons/chevron-right.png" alt="Try Now" />
     </Button>
   );
 };
 
-OptForm.Text = function OptFormText({ children, ...restProps }: Props) {
-  return <Text {...restProps}>{children}</Text>;
+OptForm.Text = function OptFormText({ children }: { children: string }) {
+  return <Text>{children}</Text>;
 };
 
-OptForm.Break = function OptFormBreak({ children, ...restProps }: Props) {
-  return <Break {...restProps}>{children}</Break>;
-};
+// OptForm.Break = function OptFormBreak({ children }: { children: any }) {
+//   return <Break>{children}</Break>;
+// };
