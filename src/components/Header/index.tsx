@@ -3,12 +3,10 @@ import { Background, ButtonLink, Container, Logo } from './styles/Header';
 
 export default function Header({
   children,
-  src,
 }: {
-  src: string;
-  children: JSX.Element;
+  children: JSX.Element | JSX.Element[];
 }) {
-  return <Background src={src}>{children}</Background>;
+  return <Background>{children}</Background>;
 }
 
 Header.Frame = function HeaderFrame({ children }: { children: JSX.Element[] }) {

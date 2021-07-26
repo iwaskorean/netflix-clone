@@ -1,6 +1,5 @@
 import styled from 'styled-components/macro';
 import { Link as ReactRouterLink } from 'react-router-dom';
-// import { BackgroundProps } from '../../../types/header';
 
 export const Background = styled.div`
   display: flex;
@@ -11,9 +10,9 @@ export const Background = styled.div`
       rgba(0, 0, 0, 0.1),
       rgba(0, 0, 0, 0.35)
     ),
-    url(${({ src }: { src: string }) =>
-        src ? `../images/misc/${src}.jpg` : '../images/misc/home-bg.jpg'})
-      top left / cover no-repeat;
+    url('../images/misc/home-bg-kr.jpg');
+  background-position: top left;
+  background-repeat: no-repeat;
 `;
 
 export const Container = styled.div`
@@ -43,7 +42,7 @@ export const Logo = styled.img`
 export const ButtonLink = styled(ReactRouterLink)`
   display: block;
   background-color: #e50914;
-  width: 84px;
+  width: 50px;
   text-align: center;
   height: fit-content;
   color: white;

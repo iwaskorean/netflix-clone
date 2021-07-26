@@ -61,7 +61,7 @@ export const Text = styled.p`
   color: white;
   text-align: center;
   line-height: 40px;
-
+  margin: 16px 0;
   @media (max-width: 600px) {
     font-size: 16px;
     line-height: 22px;
