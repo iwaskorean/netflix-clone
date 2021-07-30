@@ -1,9 +1,8 @@
 import { createContext } from 'react';
 import firebase from 'firebase';
 
-type FirebaseContextPropsType = {
+type FirebaseContextType = {
   firebase: firebase.app.App;
 };
 
-export const FirebaseContext =
-  createContext<FirebaseContextPropsType | null>(null);
+export const FirebaseContext = createContext<FirebaseContextType | null>(null);

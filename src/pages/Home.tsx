@@ -14,7 +14,7 @@ export default function Home() {
             다양한 디바이스에서 시청하세요. 언제든 해지하실 수 있습니다.
           </Feature.SubTitle>
           <OptForm>
-            <OptForm.Input placeholder="Email address" />
+            <OptForm.Input placeholder="이메일 주소" />
             <OptForm.Button>시작하기</OptForm.Button>
             <OptForm.Break></OptForm.Break>
             <OptForm.Text>
