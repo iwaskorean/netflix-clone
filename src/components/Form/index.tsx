@@ -72,10 +72,15 @@ Form.Input = function FormInput({
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   autoComplete?: string;
-  type: string;
+  type: 'text' | 'password';
 }) {
   return (
-    <Input placeholder={placeholder} value={value} onChange={onChange}></Input>
+    <Input
+      placeholder={placeholder}
+      value={value}
+      onChange={onChange}
+      type={type}
+    />
   );
 };
 

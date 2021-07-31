@@ -54,7 +54,7 @@ export default function SignIn() {
               value={password}
               onChange={({ target }) => setPassword(target.value)}
               autoComplete="off"
-              type="text"
+              type="password"
             />
             <Form.Submit disabled={isInvalid} type="submit">
               로그인
