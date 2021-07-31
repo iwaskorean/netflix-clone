@@ -1,12 +1,11 @@
 import { useContext, useEffect, useState } from 'react';
 import { FirebaseContext } from '../context/firebase';
-
-type ContentType = {
-  docId: string;
-};
+import { ContentType, InitialContentType } from '../types/content';
 
 export default function useContent(target: string) {
-  const [content, setContent] = useState<ContentType[]>([]);
+  const [content, setContent] = useState<ContentType[] | InitialContentType[]>(
+    []
+  );
   const firebase = useContext(FirebaseContext)?.firebase;
 
   useEffect(() => {
