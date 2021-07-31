@@ -8,7 +8,7 @@ export default function HeaderContainer({
   children: JSX.Element;
 }) {
   return (
-    <Header>
+    <Header bg={true}>
       <Header.Frame>
         <Header.Logo to={ROUTES.HOME} alt="Netflix" src={logo} />
         <Header.ButtonLink to={ROUTES.SIGN_IN}>로그인</Header.ButtonLink>

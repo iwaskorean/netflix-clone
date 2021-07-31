@@ -1,7 +1,11 @@
 import styled from 'styled-components/macro';
 import { Link as ReactRouterLink } from 'react-router-dom';
 
-export const Background = styled.div`
+type BackgroundProps = {
+  bg: boolean;
+};
+
+export const Background = styled.div<BackgroundProps>`
   display: flex;
   flex-direction: column;
   background: linear-gradient(
@@ -10,7 +14,8 @@ export const Background = styled.div`
       rgba(0, 0, 0, 0.1),
       rgba(0, 0, 0, 0.35)
     ),
-    url('../images/misc/home-bg-kr.jpg');
+    url(${({ bg }) => (bg ? '../images/misc/home-bg-kr.jpg' : 'none')});
+
   background-position: top left;
   background-repeat: no-repeat;
 `;

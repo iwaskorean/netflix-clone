@@ -2,14 +2,20 @@ import { Link as ReactRouterLink } from 'react-router-dom';
 import { Background, ButtonLink, Container, Logo } from './styles/Header';
 
 export default function Header({
+  bg,
   children,
 }: {
+  bg: boolean;
   children: JSX.Element | JSX.Element[];
 }) {
-  return <Background>{children}</Background>;
+  return <Background bg={bg}>{children}</Background>;
 }
 
-Header.Frame = function HeaderFrame({ children }: { children: JSX.Element[] }) {
+Header.Frame = function HeaderFrame({
+  children,
+}: {
+  children: JSX.Element[] | JSX.Element;
+}) {
   return <Container>{children}</Container>;
 };
 
