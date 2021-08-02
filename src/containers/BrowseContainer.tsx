@@ -2,6 +2,8 @@ import { useContext, useEffect, useState } from 'react';
 import { FirebaseContext } from '../context/firebase';
 import { ContentType, InitialContentType } from '../types/content';
 import SelectProfileContainer from '../containers/SelectProfileContainer';
+import { Loading } from '../components';
+import { ProfileType } from '../types/profile';
 
 type SlidesType = {
   films: {
@@ -15,7 +17,7 @@ type SlidesType = {
 };
 
 export default function BrowseContainer({ slides }: { slides: SlidesType }) {
-  const [profile, setProfile] = useState({});
+  const [profile, setProfile] = useState<ProfileType>();
   const [loading, setLoading] = useState(true);
 
   const firebase = useContext(FirebaseContext)?.firebase;
@@ -24,13 +26,16 @@ export default function BrowseContainer({ slides }: { slides: SlidesType }) {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 3000);
+    }, 2000);
   }, [profile]);
 
-  return (
-    <>
-      {/* loading ? <Loaidng /> : null */}
-      <SelectProfileContainer />
-    </>
+  return profile?.displayName ? (
+    loading ? (
+      <Loading />
+    ) : (
+      <Loading.ReleaseBody />
+    )
+  ) : (
+    <SelectProfileContainer user={user} setProfile={setProfile} />
   );
 }

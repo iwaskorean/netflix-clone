@@ -1,8 +1,19 @@
-import { Header } from '../components';
+import { Dispatch, SetStateAction } from 'react';
+import { Header, Profiles } from '../components';
 import * as Routes from '../constants/routes';
+import { ProfileType } from '../types/profile';
 import logo from '../logo.svg';
 
-export default function SelectProfileContainer() {
+interface SelectProfileContainerProps {
+  setProfile: Dispatch<SetStateAction<ProfileType | undefined>>;
+  // Have to Fix type annotation
+  user: any;
+}
+
+export default function SelectProfileContainer({
+  user,
+  setProfile,
+}: SelectProfileContainerProps) {
   return (
     <>
       <Header bg={false}>
@@ -10,6 +21,25 @@ export default function SelectProfileContainer() {
           <Header.Logo to={Routes.HOME} alt="Netflix" src={logo} />
         </Header.Frame>
       </Header>
+
+      <Profiles>
+        <Profiles.Title>Netflix를 시청할 프로필을 선택하세요.</Profiles.Title>
+        <Profiles.List>
+          {user && (
+            <Profiles.User
+              onClick={() =>
+                setProfile({
+                  displayName: user.displayName,
+                  photoURL: user.photoURL,
+                })
+              }
+            >
+              <Profiles.Picture src={user.photoURL} />
+              <Profiles.Name>{user.displayName}</Profiles.Name>
+            </Profiles.User>
+          )}
+        </Profiles.List>
+      </Profiles>
     </>
   );
 }
