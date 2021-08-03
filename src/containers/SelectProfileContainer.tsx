@@ -1,11 +1,10 @@
-import { Dispatch, SetStateAction } from 'react';
 import { Header, Profiles } from '../components';
 import * as Routes from '../constants/routes';
 import { ProfileType } from '../types/profile';
 import logo from '../logo.svg';
 
 interface SelectProfileContainerProps {
-  setProfile: Dispatch<SetStateAction<ProfileType | undefined>>;
+  setProfile: React.Dispatch<React.SetStateAction<ProfileType | undefined>>;
   // Have to Fix type annotation
   user: any;
 }
@@ -14,6 +13,8 @@ export default function SelectProfileContainer({
   user,
   setProfile,
 }: SelectProfileContainerProps) {
+  console.log(user);
+
   return (
     <>
       <Header bg={false}>
