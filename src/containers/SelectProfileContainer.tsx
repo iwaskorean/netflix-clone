@@ -5,7 +5,7 @@ import logo from '../logo.svg';
 
 interface SelectProfileContainerProps {
   setProfile: React.Dispatch<React.SetStateAction<ProfileType | undefined>>;
-  // Have to Fix type annotation
+  // Have to Fix annotating user type
   user: any;
 }
 
@@ -13,8 +13,6 @@ export default function SelectProfileContainer({
   user,
   setProfile,
 }: SelectProfileContainerProps) {
-  console.log(user);
-
   return (
     <>
       <Header bg={false}>

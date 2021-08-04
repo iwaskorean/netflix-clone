@@ -1,18 +1,22 @@
 import styled from 'styled-components/macro';
 import { Link as ReactRouterLink } from 'react-router-dom';
 
-type BackgroundProps = {
+interface BackgroundProps {
   bg: boolean;
   src?: string;
-};
+}
 
-type SearchInputProps = {
+interface SearchInputProps {
   active: boolean;
-};
+}
 
-type PictureProps = {
+interface PictureProps {
   src: string;
-};
+}
+
+interface LinkProps {
+  active?: string;
+}
 
 export const Background = styled.div<BackgroundProps>`
   display: flex;
@@ -78,11 +82,12 @@ export const ButtonLink = styled(ReactRouterLink)`
   }
 `;
 
-export const Link = styled.p`
+export const Link = styled.p<LinkProps>`
   color: white;
   text-decoration: none;
   margin-right: 30px;
   cursor: pointer;
+  font-weight: ${({ active }) => (active === 'true' ? '700' : 'normal')};
 
   &:hover {
     font-weight: bold;

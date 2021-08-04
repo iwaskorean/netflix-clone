@@ -79,12 +79,18 @@ Header.Logo = function HeaderLogo({
 
 Header.TextLink = function HeaderTextLink({
   onClick,
+  active,
   children,
 }: {
   onClick?: () => void;
+  active?: string;
   children: string;
 }) {
-  return <Link onClick={onClick}>{children}</Link>;
+  return (
+    <Link active={active} onClick={onClick}>
+      {children}
+    </Link>
+  );
 };
 
 Header.Search = function HeaderSearch({

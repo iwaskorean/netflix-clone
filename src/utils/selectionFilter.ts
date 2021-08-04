@@ -12,46 +12,46 @@ export default function selectionFilter({
     films && {
       series: [
         {
-          title: 'Documentaries',
+          title: '다큐멘터리',
           data: series.filter((item: any) => item.genre === 'documentaries'),
         },
         {
-          title: 'Comedies',
+          title: '코미디',
           data: series.filter((item: any) => item.genre === 'comedies'),
         },
         {
-          title: 'Children',
+          title: '어린이',
           data: series.filter((item: any) => item.genre === 'children'),
         },
         {
-          title: 'Crime',
+          title: '범죄',
           data: series.filter((item: any) => item.genre === 'crime'),
         },
         {
-          title: 'Feel Good',
+          title: '기분 좋아지는',
           data: series.filter((item: any) => item.genre === 'feel-good'),
         },
       ],
 
       films: [
         {
-          title: 'Drama',
+          title: '드라마',
           data: films.filter((item: any) => item.genre === 'drama'),
         },
         {
-          title: 'Thriller',
+          title: '스릴러',
           data: films.filter((item: any) => item.genre === 'thriller'),
         },
         {
-          title: 'Suspense',
+          title: '서스펜스',
           data: films.filter((item: any) => item.genre === 'suspense'),
         },
         {
-          title: 'Children',
+          title: '어린이',
           data: films.filter((item: any) => item.genre === 'children'),
         },
         {
-          title: 'Romance',
+          title: '로맨스',
           data: films.filter((item: any) => item.genre === 'romance'),
         },
       ],

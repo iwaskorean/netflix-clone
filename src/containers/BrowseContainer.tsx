@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { FirebaseContext } from '../context/firebase';
 import { ContentType, InitialContentType } from '../types/content';
 import SelectProfileContainer from '../containers/SelectProfileContainer';
-import { Loading } from '../components';
+import { Loading, Card } from '../components';
 import { ProfileType } from '../types/profile';
 import { Header } from '../components';
 import logo from '../logo.svg';
@@ -12,17 +12,25 @@ type SlidesType = {
   films: {
     title: string;
     data: ContentType[] | InitialContentType[];
-  };
+  }[];
+
   series: {
     title: string;
     data: ContentType[] | InitialContentType[];
-  };
+  }[];
+};
+
+type SlideItemType = {
+  title: string;
+  data: ContentType[] | InitialContentType[];
 };
 
 export default function BrowseContainer({ slides }: { slides: SlidesType }) {
   const [profile, setProfile] = useState<ProfileType>();
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
+  const [category, setCategory] = useState<'series' | 'films'>('series');
+  const [slideRows, setSlideRows] = useState<SlideItemType[]>();
 
   const firebase = useContext(FirebaseContext)?.firebase;
   // Have to Fix type annotation for user
@@ -34,6 +42,10 @@ export default function BrowseContainer({ slides }: { slides: SlidesType }) {
     }, 2000);
   }, [profile]);
 
+  useEffect(() => {
+    setSlideRows(slides[category]);
+  }, [category, slides]);
+
   return profile?.displayName ? (
     <>
       {loading ? <Loading /> : <Loading.ReleaseBody />}
@@ -41,8 +53,18 @@ export default function BrowseContainer({ slides }: { slides: SlidesType }) {
         <Header.Frame>
           <Header.Group>
             <Header.Logo src={logo} to={ROUTES.HOME} alt="Netflix" />
-            <Header.TextLink>드라마</Header.TextLink>
-            <Header.TextLink>영화</Header.TextLink>
+            <Header.TextLink
+              active={category === 'series' ? 'true' : 'false'}
+              onClick={() => setCategory('series')}
+            >
+              드라마
+            </Header.TextLink>
+            <Header.TextLink
+              active={category === 'films' ? 'true' : 'false'}
+              onClick={() => setCategory('films')}
+            >
+              영화
+            </Header.TextLink>
           </Header.Group>
 
           <Header.Group>
@@ -77,6 +99,30 @@ export default function BrowseContainer({ slides }: { slides: SlidesType }) {
           <Header.PlayButton>재생</Header.PlayButton>
         </Header.Feature>
       </Header>
+
+      <Card.Group>
+        {slideRows?.map((slideItem: SlideItemType) => (
+          <Card key={`${category} - ${slideItem.title.toLowerCase()}`}>
+            <Card.Title>{slideItem.title}</Card.Title>
+            <Card.Entities>
+              {slideItem.data.map((item: ContentType) => (
+                <Card.Item key={item.docId} item={item}>
+                  <Card.Image
+                    src={`/images/${category}/${item.genre}/${item.slug}/small.jpg`}
+                  />
+                  <Card.Meta>
+                    <Card.SubTitle>{item.title}</Card.SubTitle>
+                    <Card.Text>{item.description}</Card.Text>
+                  </Card.Meta>
+                </Card.Item>
+              ))}
+            </Card.Entities>
+            <Card.Feature category={category}>
+              <p>Hello</p>
+            </Card.Feature>
+          </Card>
+        ))}
+      </Card.Group>
     </>
   ) : (
     <SelectProfileContainer user={user} setProfile={setProfile} />
