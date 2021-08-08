@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from 'react';
 import { FirebaseContext } from '../context/firebase';
-import { ContentType, InitialContentType } from '../types/content';
+import { ContentType } from '../types/content';
 import SelectProfileContainer from '../containers/SelectProfileContainer';
-import { Loading, Card } from '../components';
+import { Loading, Card, Player } from '../components';
 import { ProfileType } from '../types/profile';
 import { Header } from '../components';
 import logo from '../logo.svg';
@@ -11,18 +11,18 @@ import * as ROUTES from '../constants/routes';
 type SlidesType = {
   films: {
     title: string;
-    data: ContentType[] | InitialContentType[];
+    data: ContentType[];
   }[];
 
   series: {
     title: string;
-    data: ContentType[] | InitialContentType[];
+    data: ContentType[];
   }[];
 };
 
 type SlideItemType = {
   title: string;
-  data: ContentType[] | InitialContentType[];
+  data: ContentType[];
 };
 
 export default function BrowseContainer({ slides }: { slides: SlidesType }) {
@@ -118,7 +118,10 @@ export default function BrowseContainer({ slides }: { slides: SlidesType }) {
               ))}
             </Card.Entities>
             <Card.Feature category={category}>
-              <p>Hello</p>
+              <Player>
+                <Player.Button />
+                <Player.Video src={'/vidoes/bunny.mp4'} />
+              </Player>
             </Card.Feature>
           </Card>
         ))}

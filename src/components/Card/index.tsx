@@ -135,6 +135,7 @@ Card.Feature = function CardText({
         <FeatureClose onClick={() => setShowFeature(false)}>
           <img src="/images/icons/close.png" alt="Close" />
         </FeatureClose>
+        {children}
       </Content>
 
       <Group margin="30px 0" flex-direction="row" alignItems="center">
