@@ -5,8 +5,9 @@ import SelectProfileContainer from '../containers/SelectProfileContainer';
 import { Loading, Card, Player } from '../components';
 import { ProfileType } from '../types/profile';
 import { Header } from '../components';
-import logo from '../logo.svg';
+import Fuse from 'fuse.js';
 import * as ROUTES from '../constants/routes';
+import logo from '../logo.svg';
 
 type SlidesType = {
   films: {
@@ -45,6 +46,24 @@ export default function BrowseContainer({ slides }: { slides: SlidesType }) {
   useEffect(() => {
     setSlideRows(slides[category]);
   }, [category, slides]);
+
+  useEffect(() => {
+    if (slideRows) {
+      const fuse = new Fuse(slideRows, {
+        keys: ['data.description', 'data.title', 'data.genre'],
+      });
+
+      const results = fuse.search(searchTerm).map(({ item }) => item);
+
+      if (searchTerm.length > 3 && results.length > 0) {
+        setSlideRows(results);
+      } else {
+        setSlideRows(slides[category]);
+      }
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchTerm]);
 
   return profile?.displayName ? (
     <>
